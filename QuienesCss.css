@@ -1,0 +1,24 @@
+#fondoprincipio {
+  background-color: #00cbcc;
+}
+#letrainicio {
+  color: white;
+  font-size: 20px;
+}
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  color: red;
+}
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: red;
+}
+body {
+  background-image: url(img/rescatados/Oso.jpg);
+}
+#banner {
+  font-size: 21px;
+}
