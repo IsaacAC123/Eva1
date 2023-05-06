@@ -56,7 +56,7 @@ ROOT_URLCONF = 'misperrisdjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['', 'D:/xampp/htdocs/Evaluacion1/misperrisdjango/myapp/views.py'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

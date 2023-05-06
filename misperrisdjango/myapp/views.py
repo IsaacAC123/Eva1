@@ -5,16 +5,16 @@ from .models import Adoptante
 # Create your views here.
 def guardar_datos(request):
     if request.method == 'POST':
-        correo = request.POST.get('correo')
-        rut = request.POST.get('RUT')
-        nombre = request.POST.get('Nombre')
-        fecha_naci = request.POST.get('Fecha')
-        contacto = request.POST.get('contacto')
-        regionS = request.POST.get('regionValue')
-        comunaS = request.POST.get('comunaValue')
-        tipo_vivienda = request.POST.get('tipovivienda')
-        Adoptante = Adoptante(correo=correo, rut=rut, nombre=nombre, fecha_naci=fecha_naci, contacto=contacto, regionS=regionS, comunaS=comunaS, tipo_vivienda=tipo_vivienda)
+        Adoptante = Adoptante()
+        Adoptante.correo = request.POST.get('correo')
+        Adoptante.RUT = request.POST.get('RUT')
+        Adoptante.nombre_completo = request.POST.get('Nombre')
+        Adoptante.fecha_nacimiento = request.POST.get('Fecha')
+        Adoptante.telefono = request.POST.get('contacto')
+        Adoptante.region = request.POST.get('regionValue')
+        Adoptante.comuna = request.POST.get('comunaValue')
+        Adoptante.tipo_vivienda = request.POST.get('tipovivienda')
         Adoptante.save()
-        return HttpResponseRedirect('Formulario enviado!.')
+        return redirect('views.py')
     else:
         return render(request, 'formulario.html')
