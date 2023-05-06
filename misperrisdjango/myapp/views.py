@@ -1,20 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Adoptante
+from .forms import FormularioAdopcion
+from .models import Adopcion
 
-# Create your views here.
 def guardar_datos(request):
     if request.method == 'POST':
-        correo = request.POST.get('correo')
-        rut = request.POST.get('RUT')
-        nombre = request.POST.get('Nombre')
-        fecha_naci = request.POST.get('Fecha')
-        contacto = request.POST.get('contacto')
-        regionS = request.POST.get('regionValue')
-        comunaS = request.POST.get('comunaValue')
-        tipo_vivienda = request.POST.get('tipovivienda')
-        Adoptante = Adoptante(correo=correo, rut=rut, nombre=nombre, fecha_naci=fecha_naci, contacto=contacto, regionS=regionS, comunaS=comunaS, tipo_vivienda=tipo_vivienda)
-        Adoptante.save()
-        return HttpResponseRedirect('Formulario enviado!.')
+        formulario = FormularioAdopcion(request.POST)
+        if formulario.is_valid():
+            correo = formulario.cleaned_data['correo']
+            RUT = formulario.cleaned_data['RUT']
+            Nombre = formulario.cleaned_data['Nombre']
+            Fecha = formulario.cleaned_data['Fecha']
+            contacto = formulario.cleaned_data['contacto']
+            tipovivienda = formulario.cleaned_data['tipovivienda']
+            adopcion = Adopcion(correo=correo, RUT=RUT, Nombre=Nombre, Fecha=Fecha, contacto=contacto, tipovivienda=tipovivienda)
+            adopcion.save()
+            return HttpResponseRedirect('/formulario/gracias/')
     else:
-        return render(request, 'formulario.html')
+        formulario = FormularioAdopcion()
+    return render(request, 'formulario.html', {'formulario': formulario})

@@ -1,142 +1,15 @@
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario Donacion</title>
-    <link href="formulario.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="funciones.js" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-  </head>
-  <body>
-    <div class="row" id="fondoprincipio">
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="fondoprincipio">
-        <img src="img/logo.png" />
-      </div>
-      <div
-        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
-        id="letrainicio"
-        style="left: 80px"
-      >
-        <a href="indexMisPerris.html" style="color: white" id="banner"
-          >Inicio</a
-        >
-      </div>
-      <div
-        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
-        id="letrainicio"
-        style="left: 50px"
-      >
-        <a href="QuienesSomos.html" style="color: white" id="banner"
-          >Quienes Somos</a
-        >
-      </div>
-      <div
-        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
-        id="letrainicio"
-        style="left: 50px"
-      >
-        <a href="Galeriaperros.html" style="color: white" id="banner"
-          >Galeria de Imagenes</a
-        >
-      </div>
-      <div
-        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
-        id="letrainicio"
-        style="left: 100px"
-      >
-        <a href="formulario.html" style="color: white" id="banner"
-          >Adopta un perro</a
-        >
-      </div>
-    </div>
-    <div class="row" id="fondo">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <center>
-          <form
-            action="{% url 'guardar_datos' %}"
-            name="formulario"
-            method="post"
-          >
-            {% csrf_token %}
-            <br /><br />
-            <h1 id="tituloformulario">FORMULARIO POSTULANTE ADOPCION</h1>
-            <br /><br />
-            <label>Ingrese su email</label>
-            <input
-              type="email"
-              name="correo"
-              maxlength="30"
-              placeholder="nombre@dominio.cl"
-              required=""
-            />
-            <br /><br />
-            <label>Ingrese su RUT </label>
-            <input
-              type="text"
-              name="RUT"
-              maxlength="12"
-              placeholder="Ingrese su RUT"
-              required=""
-            />
-            <br /><br />
-            <label>Ingrese su Nombre completo </label>
-            <input
-              type="text"
-              name="Nombre"
-              maxlength="50"
-              placeholder="Ingrese su Nombre Completo"
-              required=""
-            />
-            <br /><br />
-            <label>Fecha de Nacimiento </label>
-            <input
-              type="date"
-              min="1900-01-01"
-              max="2023-12-31"
-              required=""
-              name="Fecha"
-            />
-            <br /><br />
-            <label>Telefono Contacto (9xxxxxxxx)</label>
-            <input
-              type="number"
-              name="contacto"
-              minlenght="9"
-              maxlength="9"
-              required=""
-            />
-            <br /><br />
-            <span style="color: white"
-              >Region:
-              <select id="regionSelect" required=""></select></span
-            ><br /><br />
-            <span style="color: white"
-              >Comunas:
-              <select id="comunaSelect" required=""></select></span
-            ><br /><br />
-            <span style="color: white"
-              >Region seleccionada: <span id="regionValue"></span></span
-            ><br /><br />
-            <span style="color: white"
-              >Comuna seleccionada: <span id="comunaValue"></span
-            ></span>
-            <br /><br />
-            <script type="text/javascript" src="funciones.js"></script>
-            <label>Tipo Vivienda</label>
-            <select name="tipovivienda">
-              <option>Seleccione tipo vivienda</option>
-              <option>Casa con patio grande</option>
-              <option>Casa con patio chico</option>
-              <option>Casa sin patio</option>
-              <option>Departamento</option>
-            </select>
-            <br /><br />
-            <input onclick="alertaenviar()" type="submit" name="enviar" />
-          </form>
-        </center>
-      </div>
-    </div>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+  <form action="{% url 'guardar_datos' %}" name="formulario" method="post">
+    {% csrf_token %}
+    <br /><br />
+    <h1 id="tituloformulario">FORMULARIO POSTULANTE ADOPCION</h1>
+    <br /><br />
+    {{ formulario.as_p }}
+    <br /><br />
+    <input type="submit" value="Enviar" />
+  </form>
+</center>
+{% endblock %}
