@@ -1,0 +1,135 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Donacion</title>
+    <link href="{% static '/formulario.css' %}" rel="stylesheet" />
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static '/funciones.js' %}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="row" id="fondoprincipio">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="fondoprincipio">
+        <img src="{% static '/img/logo.png' %}" />
+      </div>
+      <div
+        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        id="letrainicio"
+        style="left: 80px"
+      >
+        <a href="indexMisPerris.html" style="color: white" id="banner"
+          >Inicio</a
+        >
+      </div>
+      <div
+        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        id="letrainicio"
+        style="left: 50px"
+      >
+        <a href="QuienesSomos.html" style="color: white" id="banner"
+          >Quienes Somos</a
+        >
+      </div>
+      <div
+        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        id="letrainicio"
+        style="left: 50px"
+      >
+        <a href="Galeriaperros.html" style="color: white" id="banner"
+          >Galeria de Imagenes</a
+        >
+      </div>
+      <div
+        class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        id="letrainicio"
+        style="left: 100px"
+      >
+        <a href="formulario.html" style="color: white" id="banner"
+          >Adopta un perro</a
+        >
+      </div>
+    </div>
+    <div class="row" id="fondo">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <center>
+          <form action="{% url 'formulario' %}" name="formulario" method="post">
+            {% csrf_token %}
+            <br /><br />
+            <h1 id="tituloformulario">FORMULARIO POSTULANTE ADOPCION</h1>
+            <br /><br />
+            <label>Ingrese su email</label>
+            <input
+              type="email"
+              name="correo"
+              maxlength="30"
+              placeholder="nombre@dominio.cl"
+              required=""
+            />
+            <br /><br />
+            <label>Ingrese su RUT </label>
+            <input
+              type="text"
+              name="RUT"
+              maxlength="12"
+              placeholder="Ingrese su RUT"
+              required=""
+            />
+            <br /><br />
+            <label>Ingrese su Nombre completo </label>
+            <input
+              type="text"
+              name="Nombre"
+              maxlength="50"
+              placeholder="Ingrese su Nombre Completo"
+              required=""
+            />
+            <br /><br />
+            <label>Fecha de Nacimiento </label>
+            <input
+              type="date"
+              min="1900-01-01"
+              max="2023-12-31"
+              required=""
+              name="Fecha_naci"
+            />
+            <br /><br />
+            <label>Telefono Contacto (9xxxxxxxx)</label>
+            <input
+              type="number"
+              name="contacto"
+              minlenght="9"
+              maxlength="9"
+              required=""
+            />
+            <br /><br />
+            <label>Region </label>
+            <input type="text" name="region" required="" />
+            <br /><br />
+            <label>Comuna </label>
+            <input type="text" name="comuna" required="" />
+            <br> </br>
+            <script type="text/javascript" src="funciones.js"></script>
+            <label>Tipo Vivienda</label>
+            <select name="tipovivienda">
+              <option>Seleccione tipo vivienda</option>
+              <option>Casa con patio grande</option>
+              <option>Casa con patio chico</option>
+              <option>Casa sin patio</option>
+              <option>Departamento</option>
+            </select>
+            <br /><br />
+            <input onclick="alertaenviar()" type="submit" name="enviar" />
+          </form>
+        </center>
+      </div>
+    </div>
+    <script>
+      function alertaenviar() {
+        return confirm("¿Estás seguro de enviar el formulario?");
+      }
+    </script>
+  </body>
+</html>

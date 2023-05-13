@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario Donacion</title>
+
     <link href="formulario.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="funciones.js" />
@@ -51,15 +52,11 @@
         >
       </div>
     </div>
+
     <div class="row" id="fondo">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <center>
-          <form
-            action="{% url 'guardar_datos' %}"
-            name="formulario"
-            method="post"
-          >
-            {% csrf_token %}
+          <form action="" name="formulario" method="post">
             <br /><br />
             <h1 id="tituloformulario">FORMULARIO POSTULANTE ADOPCION</h1>
             <br /><br />
