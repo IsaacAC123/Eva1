@@ -19,9 +19,16 @@ from django.urls import path, include
 from act2.vista import index
 from act2.vista import formulario
 from act2.vista import home
+from act2.vista import registrarperros
+from sociomisperris.views import registrarperros
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
     path('formulario/', formulario, name='formulario'),
     path('gestionperros/', home, name='gestionperros'),
+    path('registrarperros/', registrarperros, name='registrarperros')
+
 ]

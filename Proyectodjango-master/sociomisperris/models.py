@@ -32,15 +32,15 @@ class Postulante(models.Model):
 
 class Listaperros(models.Model):
     TIPO_ESTADO = [
-        (1, 'Disponible'),
-        (2, 'Rescatado'),
-        (3, 'Adoptado'),
-        (4, 'En tratamiento medicos'),
+        ('Disponible', 'Disponible'),
+        ('Rescatado', 'Rescatado'),
+        ('Adoptado', 'Adoptado'),
+        ('En tratamiento medicos', 'En tratamiento medicos'),
     ]
     Nombre = models.CharField(max_length=20)
     Raza_predominante = models.CharField(max_length=50)
     Descripcion = models.CharField(max_length=1000)
-    estado = models.IntegerField(choices=TIPO_ESTADO)
+    estado = models.CharField(choices=TIPO_ESTADO, max_length=90)
 
     def __str__(self):
         texto = "{0} ({1})"

@@ -1,12 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Ya estamos en la pagina de "gestion perros"</h1>
-  </body>
-</html>
+{% extends "./base.html" %} {% block body %}
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <h2>Gestion de perros</h2>
+    <div class="card">
+      <div class="card-body">
+        <form
+          action="{% url 'registrarperros' %}"
+          name="registrarperros"
+          method="post"
+        >
+          {% csrf_token %}
+          <div class="form-group">
+            <input
+              type="text"
+              id="txtNombre"
+              name="txtNombre"
+              class="form-control"
+              placeholder="Nombre"
+              minlength="2"
+              maxlength="50"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="txtRaza"
+              name="txtRaza"
+              class="form-control"
+              placeholder="Raza_predominante"
+              minlength="2"
+              maxlength="50"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="txtDescripcion"
+              name="txtDescripcion"
+              class="form-control"
+              placeholder="Descripcion"
+              minlength="2"
+              maxlength="1000"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <select
+              id="txtEstado"
+              name="txtEstado"
+              class="form-control"
+              placeholder="estado"
+              required
+            >
+              <option>Disponible</option>
+              <option>Rescatado</option>
+              <option>Adoptado</option>
+              <option>En tratamiento medico</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block text-black">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+    <div class="table-responsive">
+      <h1>Lista de nuestros perros</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Raza Predominante</th>
+            <th>Descripcion</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in perros %}
+          <tr>
+            <td>{{p.Nombre}}</td>
+            <td>{{p.Raza_predominante}}</td>
+            <td>{{p.Descripcion}}</td>
+            <td>{{p.estado}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

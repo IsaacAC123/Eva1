@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from sociomisperris.models import Postulante
 from sociomisperris.models import Listaperros
+
 def index(request):
     return render(request, 'formulario.html')
     
@@ -24,5 +25,16 @@ def formulario(request):
         return render(request, 'formulario.html')
 
 def home(request):
-    return render(request, 'gestionperros.html')
+    perrosListados = Listaperros.objects.all()
+    return render(request, 'gestionperros.html', {"perros": perrosListados})
 
+def registrarperros(request):
+    Nombre=request.POST['txtNombre']
+    Raza_predominante=request.POST['txtRaza']
+    Descripcion=request.POST['txtDescripcion']
+    estado=request.POST['txtEstado']
+
+    perros = Listaperros.objects.create(
+        Nombre=Nombre, Raza_predominante=Raza_predominante, Descripcion=Descripcion, estado=estado
+    )
+    return redirect('/')
