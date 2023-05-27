@@ -29,3 +29,19 @@ class Postulante(models.Model):
     region = models.CharField(max_length=100)
     comuna = models.CharField(max_length=100)
     tipo_vivienda = models.CharField(max_length=100)
+
+class Listaperros(models.Model):
+    TIPO_ESTADO = [
+        (1, 'Disponible'),
+        (2, 'Rescatado'),
+        (3, 'Adoptado'),
+        (4, 'En tratamiento medicos'),
+    ]
+    Nombre = models.CharField(max_length=20)
+    Raza_predominante = models.CharField(max_length=50)
+    Descripcion = models.CharField(max_length=1000)
+    estado = models.IntegerField(choices=TIPO_ESTADO)
+
+    def __str__(self):
+        texto = "{0} ({1})"
+        return texto.format(self.Nombre, self. estado)

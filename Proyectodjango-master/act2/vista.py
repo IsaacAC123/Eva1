@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from sociomisperris.models import Postulante
+from sociomisperris.models import Listaperros
 def index(request):
     return render(request, 'formulario.html')
     
@@ -21,3 +22,7 @@ def formulario(request):
         return HttpResponseRedirect('/formulario/')
     else:
         return render(request, 'formulario.html')
+
+def home(request):
+    return render(request, 'gestionperros.html')
+
